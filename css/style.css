@@ -1,0 +1,60 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+#box{
+	width: 720px;
+	height: 334px;
+	border: 1px solid #000;
+	margin: 50px auto;
+	position: relative;
+	overflow: hidden;
+}
+#list{
+	position: absolute;
+	right: 50px;
+	bottom: 20px;
+	z-index: 2;
+}
+#list li{
+	width: 20px;
+	height: 20px;
+	border: 1px solid white;
+	float: left;
+	list-style: none;
+	margin: 0 5px;
+}
+.btnLeft{
+	position: absolute;
+	left: 0;
+	top: 40%;
+	z-index: 99;
+}
+.btnRight{
+	position: absolute;
+	right: 0;
+	top: 40%;
+	z-index: 99;
+}
+#imgBox{
+	width: 1440px;
+	height: 344px;
+	background: red;
+	float: left;
+	top: 0;
+	left: 0;
+}
+#imgBox img{
+	position: absolute;
+	left: 720px;
+	top: 0;
+}
+#imgBox .first{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.hover{
+	background: blue;
+}

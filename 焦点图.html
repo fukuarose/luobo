@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			.box{
+				width: 500px;
+				height: 200px;
+				border: 1px solid darkgray;
+				
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			ul,ol{
+				list-style: none;
+			}
+			ul{
+				width: 600%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				/*margin: 5px;*/
+			}
+			ul li{
+				float: left;	
+			}
+			ul img{
+				width: 500px;
+				height: 200px;
+			}
+			ol{
+				position: absolute;
+				bottom: 10px;
+				right: 20px;
+			}
+			ol li{
+				width: 20px;
+				height: 20px;
+				border: 1px solid black;
+				background-color: white;
+				margin: 10px;
+				float: left;
+				text-align: center;
+				line-height: 20px;
+			}
+			.current{
+				background-color: orangered;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="bx">
+			<ul>
+				<li><img src="img/1.jpg"></li>
+				<li><img src="img/2.jpg"></li>
+				<li><img src="img/3.jpg"></li>
+				<li><img src="img/4.jpg"></li>
+				<li><img src="img/5.jpg"></li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	 //  封装匀速运动
+    function animate(obj,target){
+        clearInterval(obj.timer);  // 先清除定时器
+        var speed = obj.offsetLeft < target ? 15 : -15;  // 用来判断 应该 +  还是 -
+        obj.timer = setInterval(function() {
+            var result = target - obj.offsetLeft; // 因为他们的差值不会超过5
+            obj.style.left = obj.offsetLeft + speed + "px";
+            if(Math.abs(result)<=15)  // 如果差值不小于 5 说明到位置了
+            {
+                clearInterval(obj.timer);
+                obj.style.left = target + "px";  // 有5像素差距   我们直接跳转目标位置
+            }
+        },20)
+    }
+	
+	var bx=document.getElementById("bx");
+
+	var ulLis=bx.children[0];
+	var ulLength=ulLis.children;
+	ulLis.appendChild(ulLis.children[0].cloneNode(true));
+	var olLis=document.createElement("ol");
+	bx.appendChild(olLis);
+	
+	for(var i=0;i<ulLength.length-1;i++){
+		var li=document.createElement("li");
+		li.innerHTML=i+1;
+		olLis.appendChild(li);
+	}
+	olLis.children[0].className="current";
+	//animate
+    var ois=olLis.children;
+    console.log(ois.length);
+	for(var i=0;i<ois.length;i++){
+		ois[i].index=i;
+		ois[i].onmouseover=function(){
+			for(var j=0;j<ois.length;j++){
+				ois[j].className="";
+			}
+			this.className="current";
+			animate(ulLis,-this.index*500);
+			circle=key=this.index;
+		}
+	}
+	
+	//封装自动播放
+	var timer=null;
+	var key=0;//控制播放页数
+	var circle=0;//控制小方块
+	timer=setInterval(autoplay,1000);
+	function autoplay(){
+		key++;
+		console.log(ulLength.length);
+		if(key>ulLength.length-1){
+			ulLis.style.left=0;
+			key=1;
+		}
+		animate(ulLis,-key*500);
+		circle++;
+		if(circle>ois.length-1){
+			circle=0;
+		}
+		for(var i=0;i<ois.length;i++){
+			ois[i].className="";
+		}
+		ois[circle].className="current";
+		
+	}
+	//鼠标经过大盒子，停止计时器
+	bx.onmouseover=function(){
+		clearInterval(timer);
+	}
+	bx.onmouseout=function(){
+		timer=setInterval(autoplay,1000);
+	}
+</script>
+

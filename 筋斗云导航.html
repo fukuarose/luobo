@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: #333;
+			}
+			.cloud{
+				width: 83px;
+				height: 42px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: url(img/img1/cloud.gif) no-repeat;
+				
+			}
+			ul{
+				list-style: none;
+			}
+			.nav{
+				width: 800px;
+				height: 42px;
+				margin: 100px auto;
+				position: relative;
+				border-radius: 5px;
+				background: url(img/img1/rss.png) no-repeat right center #fff;/*使小图片居中往右显示*/
+			}
+			.nav li{
+				float: left;
+				width: 83px;
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+				color: #000;
+				cursor: pointer;
+			}
+			ul{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav" id="nav">
+			<span  class="cloud" id="cloud"></span>
+			<ul>
+				<li>导航</li>
+				<li>分页</li>
+				<li>分页</li>
+				<li>分页</li>
+				<li>分页</li>
+				<li>分页</li>
+				<li>分页</li>
+				<li>分页</li>
+				
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	var nav=document.getElementById("nav");
+	var cloud=document.getElementById("cloud");
+	var lis=nav.children[1].children;
+	var current=0;//用于存放点击的位置
+	for(var i=0;i<lis.length;i++){
+		lis[i].onmouseover=function(){
+			target=this.offsetLeft;
+		}
+		lis[i].onmouseout=function(){
+			target=current;//鼠标离开时，target=curent(当前点击的位置)
+		}
+		lis[i].onclick=function(){
+			current=this.offsetLeft;//点击后的位置
+		
+			
+		}
+	}
+	//缓动公式
+	var leader=0,target=0;
+	setInterval(function(){
+		leader=leader+(target-leader)/10;
+		cloud.style.left=leader+"px";
+		
+		
+	},30)
+</script>

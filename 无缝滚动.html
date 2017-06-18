@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			img{vertical-align: top;}/*解决图片间的无缝拼接，取消图片底部3px的距离*/
+			.box{
+				width: 600px;
+				height: 200px;
+				background-color: pink;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.box ul{
+				width: 400%;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.box ul li{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="scroll">
+			<ul>
+				<li><img src="img/img1/01.jpg"></li>
+				<li><img src="img/img1/02.jpg"></li>
+				<li><img src="img/img1/03.jpg"></li>
+				<li><img src="img/img1/04.jpg"></li>
+				<li><img src="img/img1/01.jpg"></li>
+				<li><img src="img/img1/02.jpg"></li>
+			</ul>
+			
+		</div>
+	</body>
+</html>
+<script>
+	var scroll=document.getElementById("scroll");
+	var ul=scroll.children[0];
+	var num=0;//控制左侧值
+	var timer=null;
+	timer=setInterval(autoPlay,30);
+	function autoPlay(){
+		num--;
+		num<=-1200?num=0:num;
+		ul.style.left=num+"px";
+		//与下边算法一样的功能
+//		if(num<=-1200){
+//			ul.style.left=0;
+//		}else{
+//			ul.style.left=num+"px";
+//		}
+		
+	}
+	scroll.onmouseover=function(){
+		clearInterval(timer);
+	}
+	scroll.onmouseout=function(){
+		timer=setInterval(autoPlay,30);
+	}
+	
+	
+</script>

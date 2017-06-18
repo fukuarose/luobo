@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				background: url(img/img1/ban1.jpg) no-repeat top center;
+				
+			}
+			.box{
+				width: 600px;
+				height: 200px;
+				margin: 0 auto;
+			}
+			.box img{
+				width: 100px;
+				height: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<img src="img/img1/ban1.jpg" id="pic1">
+			<img src="img/img1/ban2.jpg" id="pic2">
+			<img src="img/img1/ban3.jpg" id="pic3">
+		</div>
+		<script>
+		window.onload=function(){
+			
+			var pic1=document.getElementById("pic1");
+			var pic2=document.getElementById("pic2");
+			var pic3=document.getElementById("pic3");
+			pic1.onclick=function(){
+				document.body.style.backgroundImage="url(img/img1/ban1.jpg)";
+			}
+			pic2.onclick=function(){
+				document.body.style.backgroundImage="url(img/img1/ban2.jpg)";
+			}
+			pic3.onclick=function(){
+				document.body.style.backgroundImage="url(img/img1/ban3.jpg)";
+			}
+		}
+		</script>
+	</body>
+</html>

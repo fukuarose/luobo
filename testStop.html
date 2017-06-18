@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title></title>
+		  <style>div {
+		position: absolute;
+		background-color: #abc;
+		left: 0px;
+		top:30px;
+		width: 60px;
+		height: 60px;
+		margin: 5px;
+		}
+	</style>
+		  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		</head>
+		<body>
+			<button id="go">Go</button>
+			<button id="stop">STOP!</button>
+			<button id="back">Back</button>
+			<div class="block"></div>
+		<script>
+		/* Start animation */
+		$("#go").click(function(){
+		$(".block").animate({left: '+=100px'}, 2000);
+		});
+		 
+		/* Stop animation when button is clicked */
+		$("#stop").click(function(){
+		$(".block").stop();
+		});
+		 
+		/* Start anima2tion in the opposite direction */
+		$("#back").click(function(){
+		$(".block").animate({left: '-=100px'}, 2000);
+		});
+ 
+</script>
+ 
+</body>
+</html>
